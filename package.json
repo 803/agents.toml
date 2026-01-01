@@ -42,12 +42,11 @@
 	"name": "@skills-supply/agents-toml",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/803/agents.toml"
+		"url": "git+https://github.com/803/agents.toml.git"
 	},
 	"scripts": {
 		"biome": "biome check --write .",
 		"build": "tsup && node scripts/generate-schema.js",
-		"prepublishOnly": "npm run build && npm run biome",
 		"test": "vitest",
 		"test:run": "vitest run"
 	},
