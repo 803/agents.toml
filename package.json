@@ -14,12 +14,12 @@
 	"exports": {
 		".": {
 			"import": {
-				"default": "./dist/index.js",
-				"types": "./dist/index.d.ts"
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
 			},
 			"require": {
-				"default": "./dist/index.cjs",
-				"types": "./dist/index.d.cts"
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
 			}
 		},
 		"./schema.json": "./schema.json"
@@ -47,7 +47,7 @@
 	"scripts": {
 		"biome": "biome check --write .",
 		"build": "tsup && node scripts/generate-schema.js",
-		"prepublishOnly": "npm run biome && npm run build",
+		"prepublishOnly": "npm run build && npm run biome",
 		"test": "vitest",
 		"test:run": "vitest run"
 	},
