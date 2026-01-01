@@ -1,295 +1,308 @@
 {
-	"$id": "https://github.com/803/agents.toml/schema.json",
-	"$ref": "#/definitions/agents.toml",
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"definitions": {
-		"agents.toml": {
-			"additionalProperties": false,
-			"properties": {
-				"agents": {
-					"additionalProperties": {
-						"type": "boolean"
-					},
-					"default": {},
-					"type": "object"
-				},
-				"dependencies": {
-					"additionalProperties": {
-						"anyOf": [
-							{
-								"pattern": "^(@[a-zA-Z0-9_-]+\\/)?[a-zA-Z0-9_-]+@.+$",
-								"type": "string"
-							},
-							{
-								"additionalProperties": false,
-								"properties": {
-									"branch": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"gh": {
-										"pattern": "^[a-zA-Z0-9_.-]+\\/[a-zA-Z0-9_.-]+$",
-										"type": "string"
-									},
-									"path": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"rev": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"tag": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									}
-								},
-								"required": ["gh"],
-								"type": "object"
-							},
-							{
-								"additionalProperties": false,
-								"properties": {
-									"branch": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"git": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"path": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"rev": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"tag": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									}
-								},
-								"required": ["git"],
-								"type": "object"
-							},
-							{
-								"additionalProperties": false,
-								"properties": {
-									"path": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									}
-								},
-								"required": ["path"],
-								"type": "object"
-							},
-							{
-								"additionalProperties": false,
-								"properties": {
-									"marketplace": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"plugin": {
-										"allOf": [
-											{
-												"type": "string"
-											},
-											{
-												"minLength": 1,
-												"type": "string"
-											}
-										]
-									},
-									"type": {
-										"const": "claude-plugin",
-										"type": "string"
-									}
-								},
-								"required": ["marketplace", "plugin", "type"],
-								"type": "object"
-							}
-						]
-					},
-					"default": {},
-					"type": "object"
-				},
-				"exports": {
-					"additionalProperties": false,
-					"properties": {
-						"auto_discover": {
-							"additionalProperties": false,
-							"properties": {
-								"skills": {
-									"anyOf": [
-										{
-											"allOf": [
-												{
-													"type": "string"
-												},
-												{
-													"minLength": 1,
-													"type": "string"
-												}
-											]
-										},
-										{
-											"const": false,
-											"type": "boolean"
-										}
-									]
-								}
-							},
-							"type": "object"
-						}
-					},
-					"type": "object"
-				},
-				"package": {
-					"additionalProperties": false,
-					"properties": {
-						"description": {
-							"allOf": [
-								{
-									"type": "string"
-								},
-								{
-									"minLength": 1,
-									"type": "string"
-								}
-							]
-						},
-						"license": {
-							"allOf": [
-								{
-									"type": "string"
-								},
-								{
-									"minLength": 1,
-									"type": "string"
-								}
-							]
-						},
-						"name": {
-							"allOf": [
-								{
-									"type": "string"
-								},
-								{
-									"minLength": 1,
-									"type": "string"
-								}
-							]
-						},
-						"org": {
-							"allOf": [
-								{
-									"type": "string"
-								},
-								{
-									"minLength": 1,
-									"type": "string"
-								}
-							]
-						},
-						"version": {
-							"allOf": [
-								{
-									"type": "string"
-								},
-								{
-									"minLength": 1,
-									"type": "string"
-								}
-							]
-						}
-					},
-					"required": ["name", "version"],
-					"type": "object"
-				}
-			},
-			"type": "object"
-		}
-	},
-	"description": "Manifest file for AI agent skill packages",
-	"title": "agents.toml"
+  "$id": "https://github.com/803/agents.toml/schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Manifest file for AI agent skill packages",
+  "title": "agents.toml",
+  "$ref": "#/definitions/agents.toml",
+  "definitions": {
+    "agents.toml": {
+      "type": "object",
+      "properties": {
+        "agents": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "default": {}
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(@[a-zA-Z0-9_-]+\\/)?[a-zA-Z0-9_-]+@.+$"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "branch": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "gh": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9_.-]+\\/[a-zA-Z0-9_.-]+$"
+                  },
+                  "path": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "rev": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "tag": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "gh"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "branch": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "git": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "path": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "rev": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "tag": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "git"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "path"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "marketplace": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "plugin": {
+                    "allOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "claude-plugin"
+                  }
+                },
+                "required": [
+                  "marketplace",
+                  "plugin",
+                  "type"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "default": {}
+        },
+        "exports": {
+          "type": "object",
+          "properties": {
+            "auto_discover": {
+              "type": "object",
+              "properties": {
+                "skills": {
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "boolean",
+                      "const": false
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "package": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "allOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "license": {
+              "allOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "name": {
+              "allOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "org": {
+              "allOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "version": {
+              "allOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            }
+          },
+          "required": [
+            "name",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }
