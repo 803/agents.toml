@@ -42,7 +42,7 @@
 	"name": "@skills-supply/agents-toml",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/agents-toml/agents-toml"
+		"url": "https://github.com/803/agents.toml"
 	},
 	"scripts": {
 		"biome": "biome check --write .",

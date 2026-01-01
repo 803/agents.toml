@@ -211,9 +211,16 @@ export type ValidatedDependency =
 	| ValidatedLocalDependency
 	| ValidatedClaudePluginDependency
 
+export interface ManifestOrigin {
+	/** Absolute path to the manifest file (if basePath was provided) */
+	sourcePath: string
+}
+
 export interface ValidatedManifest {
 	package?: Package
 	agents: Map<AgentId, boolean>
 	dependencies: Map<string, ValidatedDependency>
 	exports?: Exports
+	/** Origin information (present if basePath was provided) */
+	origin?: ManifestOrigin
 }

@@ -15,7 +15,7 @@ const jsonSchema = zodToJsonSchema(ManifestSchema, {
 
 // Add metadata
 const schema = {
-	$id: "https://github.com/agents-toml/agents-toml/schema.json",
+	$id: "https://github.com/803/agents.toml/schema.json",
 	$schema: "http://json-schema.org/draft-07/schema#",
 	description: "Manifest file for AI agent skill packages",
 	title: "agents.toml",
