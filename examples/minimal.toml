@@ -1,0 +1,8 @@
+# Minimal agents.toml - just the basics
+
+[package]
+name = "my-skills"
+version = "1.0.0"
+
+[agents]
+claude-code = true

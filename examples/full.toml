@@ -1,0 +1,38 @@
+# Full agents.toml example demonstrating all features
+
+[package]
+name = "full-example"
+version = "2.0.0"
+description = "A complete example showing all agents.toml features"
+license = "MIT"
+org = "example-org"
+
+[agents]
+claude-code = true
+codex = true
+opencode = false
+
+[dependencies]
+# Registry shorthand
+superpowers = "superpowers-marketplace/superpowers@1.0.0"
+
+# GitHub with tag (pinned version)
+sensei = { gh = "sensei-marketplace/sensei", tag = "v2.0.0" }
+
+# GitHub with branch (track latest)
+feature-dev = { gh = "claude-plugins-official/feature-dev", branch = "main" }
+
+# GitHub with subdirectory
+elements = { gh = "superpowers-marketplace/elements-of-style", tag = "v1.0.0", path = "packages/core" }
+
+# Generic git (non-GitHub)
+gitlab-skills = { git = "https://gitlab.com/myorg/skills.git", rev = "abc123def" }
+
+# Local path (relative to this file)
+local-dev = { path = "../local-skills" }
+
+# Claude plugin
+playwright = { type = "claude-plugin", plugin = "playwright", marketplace = "anthropics/claude-plugins" }
+
+[exports]
+auto_discover.skills = "skills"
