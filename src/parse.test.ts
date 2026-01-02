@@ -111,8 +111,7 @@ tag = "v2.0.0"
 			const dep = result.value.dependencies.get("sensei")
 			expect(dep?.type).toBe("github")
 			if (dep?.type !== "github") throw new Error("Expected github")
-			expect(dep.owner).toBe("sensei-marketplace")
-			expect(dep.repo).toBe("sensei")
+			expect(dep.gh).toBe("sensei-marketplace/sensei")
 			expect(dep.ref).toEqual({ type: "tag", value: "v2.0.0" })
 		})
 
@@ -149,11 +148,11 @@ rev = "abc123"
 			const dep = result.value.dependencies.get("gitlab-skills")
 			expect(dep?.type).toBe("git")
 			if (dep?.type !== "git") throw new Error("Expected git")
-			expect(dep.url).toBe("https://gitlab.com/org/repo") // .git removed
+			expect(dep.url).toBe("https://gitlab.com/org/repo.git")
 			expect(dep.ref).toEqual({ type: "rev", value: "abc123" })
 		})
 
-		it("normalizes SSH git URLs to HTTPS", () => {
+		it("keeps SSH git URLs as-is", () => {
 			const result = parse(`
 [agents]
 
@@ -166,7 +165,7 @@ tag = "v1"
 
 			const dep = result.value.dependencies.get("ssh-dep")
 			if (dep?.type !== "git") throw new Error("Expected git")
-			expect(dep.url).toBe("https://github.com/org/repo")
+			expect(dep.url).toBe("git@github.com:org/repo.git")
 		})
 
 		it("parses local dependency", () => {
@@ -216,6 +215,20 @@ branch = "main"
 			expect(result.ok).toBe(false)
 			if (result.ok) throw new Error("Expected failure")
 			expect(result.error.message).toContain("tag")
+		})
+
+		it("rejects aliases with invalid characters", () => {
+			const result = parse(`
+[agents]
+
+[dependencies]
+"bad/alias" = "pkg@1.0.0"
+`)
+
+			expect(result.ok).toBe(false)
+			if (result.ok) throw new Error("Expected failure")
+			expect(result.error.type).toBe("invalid_manifest")
+			expect(result.error.message).toContain("Alias")
 		})
 	})
 

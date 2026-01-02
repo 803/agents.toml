@@ -131,7 +131,7 @@ export const DependencyDeclaration = z.union([
 
 export type DependencyDeclaration = z.infer<typeof DependencyDeclaration>
 
-export const DependenciesSchema = z.record(z.string(), DependencyDeclaration)
+export const DependenciesSchema = z.record(Alias, DependencyDeclaration)
 
 export type Dependencies = z.infer<typeof DependenciesSchema>
 
@@ -173,8 +173,7 @@ export type Manifest = z.infer<typeof ManifestSchema>
 
 export interface ValidatedGithubDependency {
 	type: "github"
-	owner: string
-	repo: string
+	gh: string
 	ref?: { type: "tag" | "branch" | "rev"; value: string }
 	path?: string
 }
@@ -211,16 +210,9 @@ export type ValidatedDependency =
 	| ValidatedLocalDependency
 	| ValidatedClaudePluginDependency
 
-export interface ManifestOrigin {
-	/** Absolute path to the manifest file (if basePath was provided) */
-	sourcePath: string
-}
-
 export interface ValidatedManifest {
 	package?: Package
 	agents: Map<AgentId, boolean>
 	dependencies: Map<string, ValidatedDependency>
 	exports?: Exports
-	/** Origin information (present if basePath was provided) */
-	origin?: ManifestOrigin
 }

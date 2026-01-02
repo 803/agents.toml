@@ -74,13 +74,11 @@ function parseDependency(
 
 	// Object with 'gh' = GitHub
 	if ("gh" in decl) {
-		const [owner, repo] = decl.gh.split("/")
 		return {
 			ok: true,
 			value: {
-				owner,
+				gh: decl.gh,
 				ref: extractGitRef(decl),
-				repo,
 				type: "github",
 				...(decl.path && { path: decl.path }),
 			},
@@ -94,7 +92,7 @@ function parseDependency(
 			value: {
 				ref: extractGitRef(decl),
 				type: "git",
-				url: normalizeGitUrl(decl.git),
+				url: decl.git,
 				...(decl.path && { path: decl.path }),
 			},
 		}
@@ -130,25 +128,6 @@ function parseDependency(
 		},
 		ok: false,
 	}
-}
-
-function normalizeGitUrl(url: string): string {
-	let normalized = url
-
-	// SSH to HTTPS
-	if (normalized.startsWith("git@")) {
-		normalized = normalized.replace(/^git@([^:]+):/, "https://$1/").replace(/\.git$/, "")
-	}
-
-	// http to https
-	if (normalized.startsWith("http://")) {
-		normalized = normalized.replace(/^http:/, "https:")
-	}
-
-	// Remove .git suffix
-	normalized = normalized.replace(/\.git$/, "")
-
-	return normalized
 }
 
 // =============================================================================
