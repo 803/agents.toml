@@ -228,7 +228,7 @@ branch = "main"
 			expect(result.ok).toBe(false)
 			if (result.ok) throw new Error("Expected failure")
 			expect(result.error.type).toBe("invalid_manifest")
-			expect(result.error.message).toContain("Alias")
+			expect(result.error.message).toContain("alias")
 		})
 	})
 
